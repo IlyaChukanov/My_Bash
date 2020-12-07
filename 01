@@ -1,0 +1,27 @@
+#!/bin/bash
+((ans=0))
+((x=0))
+((bool1=1))
+((degree=0))
+((quantity=0))
+for word in $(cat input.txt); do 
+    if [ $bool1 -eq 1 ]
+    then
+        ((x=word))
+        ((bool1=0))
+    fi
+    (( quantity++ ))
+
+done
+
+
+for word in $(tac input.txt); do
+	if [ $quantity -ne $((degree + 1)) ]
+    then
+	    (( ans = (ans * x % 1000000007 + word) % 1000000007 ))
+	    (( degree++ ))
+    fi
+
+done
+echo $ans > output.txt
+
